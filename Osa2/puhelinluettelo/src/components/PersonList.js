@@ -1,9 +1,9 @@
 import React from 'react'
 import Person from './Person'
-    const PersonList = ({persons, filter}) => (
+    const PersonList = ({persons, filter, handleDelete}) => (
         <>
-            {persons.filter(per => per.name.toLowerCase().includes(filter)).map(per=> 
-                <Person key = {per.name} name = {per.name} number = {per.number}></Person>)}
+            {persons.filter(per => per.name.toLowerCase().includes(filter.toLowerCase())).map(per=> 
+                <Person key = {per.id} id = {per.id} name = {per.name} number = {per.number} handleDelete = {handleDelete}></Person>)}
         </>
     )
 
