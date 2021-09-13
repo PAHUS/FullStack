@@ -55,8 +55,7 @@ const App = () => {
           .catch(error => {
             setCol('red')
             setMsg(`${person.name} has already been removed from the server `)
-          
-          setTimeout(() => setMsg(null), 4000)
+            setTimeout(() => setMsg(null), 4000)
           })
 
       }
@@ -73,6 +72,13 @@ const App = () => {
           setMsg(`${resp.name} added succesfully`)
           
           setTimeout(() => setMsg(null), 4000)
+        })
+        .catch(error => {
+          console.log(error.response.data)
+          setCol('red')
+          setMsg(error.response.data)
+          setTimeout(() => setMsg(null), 4000)
+          
         })
       setNewName('')
       setNewNum('')
