@@ -74,11 +74,11 @@ const App = () => {
           setTimeout(() => setMsg(null), 4000)
         })
         .catch(error => {
-          console.log(error.response.data)
+          console.log('catching error')
+          console.log(error.response.data.error)
           setCol('red')
-          setMsg(error.response.data)
+          setMsg(error.response.data.error)
           setTimeout(() => setMsg(null), 4000)
-          
         })
       setNewName('')
       setNewNum('')

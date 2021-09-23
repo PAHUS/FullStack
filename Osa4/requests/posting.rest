@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Squid Game Wiki",
+    "author": "Tanlei Vaa",
+    "url": "https://en.wikipedia.org/wiki/Squid_Game",
+    "likes": 3
+}
