@@ -7,7 +7,7 @@ test('dummy returns one', () => {
   expect(result).toBe(1)
 })
 
-describe('total likes', () => {
+describe('Total likes', () => {
     const blog = {title:'', author: '', url: '', likes: 5}
     const blogs =[{...blog, likes: 1}, {...blog, likes: 10}, {...blog, likes: 100}]
     const result1 = listHelper.totalLikes([])
@@ -20,4 +20,18 @@ describe('total likes', () => {
     })
     test('of bigger calculated right', () => {
         expect(result3).toBe(111)})
+})
+
+describe('Favourite blog', () => {
+  const blogs =[{title: "a", author: "a", url: '', likes: 12},{title: "b", author: "b", url: '', likes: 21}, {title: "ac", author: "c", url: '', likes: 2}]
+  const result1 = listHelper.favoriteBlog([])
+  const result2 = listHelper.favoriteBlog([{title: "Wretched of the Earth", author: "Franz Fanon", url: '', likes: 19321}])
+  const result3 = listHelper.favoriteBlog(blogs)
+  
+  test('of empty list is empty element', () => expect(result1).toEqual({}))
+  test('of length one list is the likes of the element', () => {
+      expect(result2).toEqual({title: "Wretched of the Earth", author: "Franz Fanon", url: '', likes: 19321})
+  })
+  test('of bigger calculated right', () => {
+      expect(result3).toEqual({title: "b", author: "b", url: '', likes: 21})})
 })
