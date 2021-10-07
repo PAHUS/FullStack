@@ -58,3 +58,24 @@ describe('Most popular blog', () => {
   }
 
 )
+
+describe('Most liked author', () => {
+  const blogs =[{title: "a", author: "a", url: '', likes: 12},{title: "b", author: "b", url: '', likes: 21}, {title: "ac", author: "c", url: '', likes: 2}, {title: "a", author: "b", url: "", likes: 222}]
+  const result1 = listHelper.mostLikes([])
+  const result2 = listHelper.mostLikes([{title: "Wretched of the Earth", author: "Franz Fanon", url: '', likes: 19321}])
+  const result3 = listHelper.mostLikes(blogs)
+  
+  // test('of empty list is empty element', () => expect(result1).toEqual({}))
+  // test('of length one list is the likes of the element', () => {
+  //     expect(result2).toEqual({title: "Wretched of the Earth", author: "Franz Fanon", url: '', likes: 19321})
+  // })
+  test('of bigger calculated right', () => {
+      expect(result3).toEqual({author: 'b', likes: 243})
+  })
+  test('of empty list works', () => {
+    expect(result1).toEqual({})
+  })
+  test('of empty one length list works', () => {
+    expect(result2).toEqual({author: 'Franz Fanon', likes: 19321})
+  })
+})

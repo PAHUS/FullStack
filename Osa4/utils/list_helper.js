@@ -30,11 +30,27 @@ const mostBlogs = (blogs) => {
   return {author: author, blogs: authList?.length}
 }
 
+const mostLikes = (blogs) => {
+  if (blogs.length === 0) return {}
+  const grouped = _.groupBy(blogs, (blog) => blog.author)
+  const groupedLists = Object.values(grouped)
+  console.log(groupedLists)
+  const subListReducer = (res, item) => {
+    return {author: res.author || item?.author,
+            likes: res.likes + item?.likes || item?.likes}
+  }
+  console.log(subListReducer)
+  const likesListing = _.map(groupedLists, (list) => _.reduce(list, subListReducer, {}))
+  const max = _.maxBy(likesListing, (item) => item?.likes)
+  return max
+
+}
 
 module.exports = {
   dummy,
   totalLikes,
   favoriteBlog,
-  mostBlogs
+  mostBlogs,
+  mostLikes,
 }
 
