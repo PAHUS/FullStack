@@ -47,5 +47,14 @@ describe('Most popular blog', () => {
   //     expect(result2).toEqual({title: "Wretched of the Earth", author: "Franz Fanon", url: '', likes: 19321})
   // })
   test('of bigger calculated right', () => {
-      expect(result3).toEqual({author: 'b', blogs: 2})})
-})
+      expect(result3).toEqual({author: 'b', blogs: 2})
+  })
+  test('of empty list works', () => {
+    expect(result1).toEqual({})
+  })
+  test('of empty one length list works', () => {
+    expect(result2).toEqual({author: 'Franz Fanon', blogs: 1})
+  })
+  }
+
+)
