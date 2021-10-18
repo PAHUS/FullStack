@@ -4,7 +4,7 @@ const app = require('../app')
 
 const api = supertest(app)
 const Blog = require('../models/blog')
-const initBlogs = [{title: "a", author: "a", url: '', likes: 12},{title: "b", author: "b", url: '', likes: 21}]
+const initBlogs = [{title: "a", author: "a", url: 'a', likes: 12},{title: "b", author: "b", url: 'b', likes: 21}]
 beforeEach(async () => {
       await Blog.deleteMany({})
       let blogObject = new Blog(initBlogs[0])
@@ -40,17 +40,25 @@ test('id field is named correctly', async () => {
 test('POST adds a blog', async () => {
     const res1 = await api.get('/api/blogs')
     const length1 = res1.body.length
-    const blogObject = new Blog({title: "c", author: "c", url: '', likes: 3131})
+    const blogObject = new Blog({title: "c", author: "c", url: 'c', likes: 3131})
     await blogObject.save()
     const response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(length1 + 1)
 })
 
 test('likes is 0 by default', async () => {
-    const blogObject = new Blog({title: 'c', author: 'c', url: ''})
+    const blogObject = new Blog({title: 'c', author: 'c', url: 'c'})
     await blogObject.save()
     const response = await api.get('/api/blogs')
     expect(response.body[2].likes).toBe(0)
+})
+
+test('no title or url gives 400 Bad Request error', async () => {
+    const blogObject = new Blog({author: 'faulty', likes: 2})
+    await api.post('/api/blogs')
+        .send(blogObject)
+        .expect(400)
+
 })
 
 afterAll(() => {
