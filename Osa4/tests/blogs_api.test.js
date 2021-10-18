@@ -37,6 +37,17 @@ test('id field is named correctly', async () => {
     
 })
 
+test('POST adds a blog', async () => {
+    const res1 = await api.get('/api/blogs')
+    const length1 = res1.body.length
+    const blogObject = new Blog({title: "c", author: "c", url: '', likes: 3131})
+    await blogObject.save()
+    const response = await api.get('/api/blogs')
+    expect(response.body).toHaveLength(length1 + 1)
+
+
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
