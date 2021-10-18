@@ -31,6 +31,12 @@ test('a specific blog is within the returned blogs', async () => {
     expect(titles).toContainEqual('a')
 })
 
+test('id field is named correctly', async () => {
+    const response = await api.get('/api/blogs')
+    expect(response.body[0].id).toBeDefined()
+    
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
