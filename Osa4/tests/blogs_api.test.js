@@ -44,8 +44,13 @@ test('POST adds a blog', async () => {
     await blogObject.save()
     const response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(length1 + 1)
+})
 
-
+test('likes is 0 by default', async () => {
+    const blogObject = new Blog({title: 'c', author: 'c', url: ''})
+    await blogObject.save()
+    const response = await api.get('/api/blogs')
+    expect(response.body[2].likes).toBe(0)
 })
 
 afterAll(() => {
