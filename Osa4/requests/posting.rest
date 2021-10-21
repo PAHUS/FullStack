@@ -2,8 +2,13 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Squid Game Wiki",
-    "author": "Tanlei Vaa",
-    "url": "https://en.wikipedia.org/wiki/Squid_Game",
-    "likes": 3
+    "title": "Truman Show Wiki",
+    "author": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Truman_Show",
+    "likes": 4000
 }
+
+
+###
+
+DELETE  http://localhost:3003/api/blogs/id?6170c020f25ec945f5d83e53
