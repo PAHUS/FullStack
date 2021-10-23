@@ -31,7 +31,7 @@ POST  http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "user": "POMO",
-    "name": "Taavi Tampio",
-    "password": "123kingi123"
+    "username": "Mokkonen",
+    "name": "Lakkonen, Mika",
+    "password": "as"
 }
