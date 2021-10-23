@@ -24,3 +24,14 @@ Content-Type: application/json
     "url": "https://en.wikipedia.org/wiki/Truman_Show",
     "likes": 4004
 }
+
+###
+
+POST  http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "user": "POMO",
+    "name": "Taavi Tampio",
+    "password": "123kingi123"
+}
