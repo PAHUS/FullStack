@@ -2,10 +2,10 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Mongoose findOne()",
-    "author": "mongoose",
-    "url": "https://mongoosejs.com/docs/api.html#model_Model.findOne",
-    "likes": 3
+    "title": "test2",
+    "author": "HU",
+    "url": "https://mock-site-2.com",
+    "likes": 7
 }
 
 
