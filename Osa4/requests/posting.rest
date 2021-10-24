@@ -2,10 +2,10 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Truman Show Wiki",
-    "author": "Wikipedia",
-    "url": "https://en.wikipedia.org/wiki/Truman_Show",
-    "likes": 4000
+    "title": "Mongoose findOne()",
+    "author": "mongoose",
+    "url": "https://mongoosejs.com/docs/api.html#model_Model.findOne",
+    "likes": 3
 }
 
 
@@ -33,5 +33,5 @@ Content-Type: application/json
 {
     "username": "Mokkonen",
     "name": "Lakkonen, Mika",
-    "password": "as"
+    "password": "asda"
 }
