@@ -31,7 +31,15 @@ POST  http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "username": "Mokkonen",
-    "name": "Lakkonen, Mika",
-    "password": "asda"
+    "username": "pahus",
+    "name": "Taneli Vaananen",
+    "password": "kiikaritKorkealle024"
+}
+###
+post http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "pahus",
+    "password": "kiikaritKorkealle024"
 }
