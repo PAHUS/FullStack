@@ -4,6 +4,7 @@ const app = require('../app')
 
 const api = supertest(app)
 const Blog = require('../models/blog')
+const User = require('../models/user')
 const initBlogs = [{title: "a", author: "a", url: 'a', likes: 12},{title: "b", author: "b", url: 'b', likes: 21}]
 beforeEach(async () => {
       await Blog.deleteMany({})
