@@ -27,8 +27,10 @@ const App = () => {
       blogService.setToken(user.token)
     }
   }, [])  
-
-
+  const handleLogout = (event) => {
+    window.localStorage.removeItem('loggedBlogappUser')
+    window.location.reload(false)
+  }
 
   
 
@@ -85,6 +87,7 @@ const App = () => {
 
   return (
     <div>
+      <button onClick={handleLogout}>log out</button>
       <h2>blogs</h2>
       <p>{user.name} has logged in</p>
       {blogs.map(blog =>
