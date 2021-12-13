@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
+import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login' 
 
@@ -13,6 +14,7 @@ const App = () => {
   const [newAuthor, setNewAuthor] = useState('')
   const [newUrl, setNewUrl] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
+  const [message, setMessage] = useState(null)
 
 
 
@@ -53,20 +55,26 @@ const App = () => {
 
   const addBlog = (event) => {
     event.preventDefault()
-    const noteObject = {
+    const blogObject = {
       title: newTitle,
       author: newAuthor,
       url: newUrl
     }
 
     blogService
-      .create(noteObject)
+      .create(blogObject)
         .then(returnedNote => {
         setBlogs(blogs.concat(returnedNote))
         setNewAuthor('')
         setNewUrl('')
         setNewTitle('')
       })
+      setMessage(
+        `Blog titled '${blogObject.title}' added`
+      )
+      setTimeout(() => {
+        setMessage(null)
+      }, 5000)
   }
 
   const handleLogin = async (event) => {
@@ -95,6 +103,9 @@ const App = () => {
     return (
       <div>
         <h2>Log in to application</h2>
+        
+      <Notification message={errorMessage} className='error' />
+      <Notification message={message} className='notification' /> 
         <form onSubmit={handleLogin}>
           <div>
               username
@@ -123,6 +134,10 @@ const App = () => {
   return (
     <div>
       <button onClick={handleLogout}>log out</button>
+      
+      <Notification message={errorMessage} className='error' />
+      <Notification message={message} className='notification' /> 
+
       <h2>blogs</h2>
       <p>{user.name} has logged in</p>
       {blogs.map(blog =>
