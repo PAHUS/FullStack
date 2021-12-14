@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import Notification from './components/Notification'
+import BlogForm from './components/BlogForm'
 import blogService from './services/blogs'
 import loginService from './services/login' 
 
@@ -138,28 +139,25 @@ const App = () => {
       <Notification message={errorMessage} className='error' />
       <Notification message={message} className='notification' /> 
 
+
+    <BlogForm 
+      addBlog={addBlog}
+      newTitle={newTitle}
+      handleTitleChange={handleTitleChange}
+      handleAuthorChange={handleAuthorChange}
+      handleUrlChange={handleUrlChange}
+      newAuthor={newAuthor}
+      newUrl={newUrl}
+    />
+
+
       <h2>blogs</h2>
       <p>{user.name} has logged in</p>
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
 
-      <form onSubmit={addBlog}>
-        <div>title: <input
-          value={newTitle}
-          onChange={handleTitleChange}
-        /> </div>
-
-        <div>author: <input
-          value={newAuthor}
-          onChange={handleAuthorChange}
-        /></div>
-         <div>url: <input
-          value={newUrl}
-          onChange={handleUrlChange}
-        /></div>
-        <button type="submit">save</button>
-      </form>  
+       
     </div>
   )
 }
