@@ -8,12 +8,11 @@ import loginService from './services/login'
 const App = () => {
   const [blogs, setBlogs] = useState([])
 
+  const [formVisible, setFormVisible] = useState(false)
   const [username, setUsername] = useState('')   
   const [password, setPassword] = useState('') 
   const [user, setUser] = useState(null)
-  const [newTitle, setNewTitle] = useState('')
-  const [newAuthor, setNewAuthor] = useState('')
-  const [newUrl, setNewUrl] = useState('')
+  
   const [errorMessage, setErrorMessage] = useState(null)
   const [message, setMessage] = useState(null)
 
@@ -38,37 +37,14 @@ const App = () => {
     window.location.reload(false)
   }
 
-  
-  const handleTitleChange = (event) => {
-    console.log(event.target.value)
-    setNewTitle(event.target.value)
-  }
 
-  const handleAuthorChange = (event) => {
-    console.log(event.target.value)
-    setNewAuthor(event.target.value)
-  }
-
-  const handleUrlChange = (event) => {
-    console.log(event.target.value)
-    setNewUrl(event.target.value)
-  }
-
-  const addBlog = (event) => {
-    event.preventDefault()
-    const blogObject = {
-      title: newTitle,
-      author: newAuthor,
-      url: newUrl
-    }
-
+  const addBlog = (blogObject) => {
     blogService
       .create(blogObject)
         .then(returnedNote => {
-        setBlogs(blogs.concat(returnedNote))
-        setNewAuthor('')
-        setNewUrl('')
-        setNewTitle('')
+          setBlogs(blogs.concat(returnedNote))
+        
+        setFormVisible(false)
       })
       setMessage(
         `Blog titled '${blogObject.title}' added`
@@ -132,6 +108,27 @@ const App = () => {
     )
   }
 
+  const blogForm = () => {
+
+      const hideWhenVisible = { display: formVisible ? 'none' : '' }
+      const showWhenVisible = { display: formVisible ? '' : 'none' }
+  
+      return (
+        <div>
+          <div style={hideWhenVisible}>
+            <button onClick={() => setFormVisible(true)}>create</button>
+          </div>
+          <div style={showWhenVisible}>
+            <BlogForm 
+              createBlog={addBlog}
+            />
+            <button onClick={() => setFormVisible(false)}>cancel</button>
+          </div>
+        </div>
+      )
+
+  }
+
   return (
     <div>
       <button onClick={handleLogout}>log out</button>
@@ -139,16 +136,7 @@ const App = () => {
       <Notification message={errorMessage} className='error' />
       <Notification message={message} className='notification' /> 
 
-
-    <BlogForm 
-      addBlog={addBlog}
-      newTitle={newTitle}
-      handleTitleChange={handleTitleChange}
-      handleAuthorChange={handleAuthorChange}
-      handleUrlChange={handleUrlChange}
-      newAuthor={newAuthor}
-      newUrl={newUrl}
-    />
+      {blogForm()}
 
 
       <h2>blogs</h2>
