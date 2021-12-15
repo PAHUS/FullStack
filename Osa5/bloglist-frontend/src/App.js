@@ -54,6 +54,14 @@ const App = () => {
       }, 5000)
   }
 
+  const likeBlog = (blog) => {
+    blogService.update(blog.id, {user: user.id, likes: blog.likes +1, author: blog.author, title: blog.title, url: blog.url})
+    .then(returnedBlog => {
+      setBlogs(blogs.map((blog2) => (blog.id === blog2.id ? returnedBlog : blog2)))
+    })
+  }
+
+
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
@@ -140,9 +148,9 @@ const App = () => {
 
 
       <h2>blogs</h2>
-      <p>{user.name} has logged in</p>
+      <p>{user.name} has logged in </p>
       {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} like ={likeBlog} />
       )}
 
        
