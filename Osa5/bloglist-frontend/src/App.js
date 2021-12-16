@@ -63,8 +63,9 @@ const App = () => {
   }
 
   const removeBlog = (blog) => {
+    if (window.confirm(`Do you wish to remove ${blog.title}?`)){ 
     blogService.remove(blog.id)
-    .then(returnedBlog =>setBlogs(blogs.filter((blog2) => blog.id !== blog2.id)))
+    .then(returnedBlog =>setBlogs(blogs.filter((blog2) => blog.id !== blog2.id)))}
   }
 
 
