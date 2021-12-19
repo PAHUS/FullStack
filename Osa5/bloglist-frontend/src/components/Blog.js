@@ -17,12 +17,13 @@ const Blog = ({blog, like, remove, user}) => {
   return (
   <div style = {blogStyle} >
     {blog.title} {blog.author}
-    <div style = {showWhenHidden}>
+    <div style = {showWhenHidden} className="togglableContent">
       <p>likes: {blog.likes} <button onClick={(event) => like(blog)}> like </button></p> 
-      {blog.user.name}
-      {(blog.user.username === user.username) &&
-      <button onClick = {(event) => remove(blog)}>remove</button>
-    }
+      <p>url: {blog.url}</p>
+      {blog.user?.name}
+      {(blog.user?.username === user?.username) &&
+        <button onClick = {(event) => remove(blog)}>remove</button>
+      }
     </div>
     
     <button onClick = {(event)=> setHidden(!hidden)}>{hidden? 'Hide' : 'View'}</button>
