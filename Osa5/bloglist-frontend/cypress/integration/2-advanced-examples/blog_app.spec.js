@@ -51,7 +51,7 @@ describe('Blog app', function() {
                 cy.contains('remove').click()
                 cy.contains('View').should('not.exist')
             })
-            it.only('is properly ordered after liking', function() {
+            it('is properly ordered after liking', function() {
                 
                 cy.createBlog({title: 'Liked', url: "Likedurl", author: 'LikedAuthor'})
                 cy.contains('TestAuthor').as('first')

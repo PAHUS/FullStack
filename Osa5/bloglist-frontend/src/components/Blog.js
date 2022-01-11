@@ -15,7 +15,7 @@ const Blog = ({blog, like, remove, user}) => {
 
 
   return (
-  <div class='blog' style = {blogStyle} >
+  <div className='blog' style = {blogStyle} >
     {blog.title} {blog.author}
     <div style = {showWhenHidden} className="togglableContent">
       <p>likes: {blog.likes} <button id='likebutton' onClick={(event) => like(blog)}> like </button></p> 
