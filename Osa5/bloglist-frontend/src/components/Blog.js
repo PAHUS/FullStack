@@ -15,10 +15,10 @@ const Blog = ({blog, like, remove, user}) => {
 
 
   return (
-  <div style = {blogStyle} >
+  <div class='blog' style = {blogStyle} >
     {blog.title} {blog.author}
     <div style = {showWhenHidden} className="togglableContent">
-      <p>likes: {blog.likes} <button onClick={(event) => like(blog)}> like </button></p> 
+      <p>likes: {blog.likes} <button id='likebutton' onClick={(event) => like(blog)}> like </button></p> 
       <p>url: {blog.url}</p>
       {blog.user?.name}
       {(blog.user?.username === user?.username) &&

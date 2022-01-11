@@ -51,6 +51,20 @@ describe('Blog app', function() {
                 cy.contains('remove').click()
                 cy.contains('View').should('not.exist')
             })
+            it.only('is properly ordered after liking', function() {
+                
+                cy.createBlog({title: 'Liked', url: "Likedurl", author: 'LikedAuthor'})
+                cy.contains('TestAuthor').as('first')
+                cy.contains('LikedAuthor').as('last')
+                cy.get('@last').contains('View').click()
+                cy.get('@last').contains('like').click().click()
+                cy.get('@first').contains('View').click()
+                cy.get('@first').contains('like').click()
+                cy.wait(300)
+                cy.get('.blog').then( blogs => {
+                    cy.wrap(blogs[0]).should('include.text', 'LikedAuthor')
+                })
+            })
 
         })
         
